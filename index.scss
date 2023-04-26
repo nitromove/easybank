@@ -1,0 +1,441 @@
+$Dark-Blue: hsl(233, 26%, 24%);
+$Lime-Green: hsl(136, 65%, 51%);
+$BrightCyan: hsl(192, 70%, 51%);
+$Grayish-Blue: hsl(233, 8%, 62%);
+$Light-Grayish-Blue: hsl(220, 16%, 96%);
+$Very-Light-Gray: hsl(0, 0%, 98%);
+$White: hsl(0, 0%, 100%);
+@mixin contenta {
+  background-color: $Very-Light-Gray;
+  display: flex;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin col1 {
+  margin-right: 5%;
+  margin-left: 5%;
+  h2 {
+    color: $Dark-Blue;
+  }
+  p {
+    color: $Light-Grayish-Blue;
+  }
+}
+
+@mixin button {
+  padding: 15px;
+  align-items: center;
+  border-radius: 25px;
+  width: 50%;
+  color: white;
+}
+
+@mixin col2 {
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+@mixin nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+@mixin header {
+  h3,
+  h4, 
+  h6,
+  a {
+    color: $Dark-Blue;
+    opacity: auto;
+  }
+  p {
+    color: $Grayish-Blue;
+    opacity: 0.4;
+    font-weight: bold;
+  }
+}
+
+@mixin contentb {
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: $Light-Grayish-Blue;
+  margin-top: -7%;
+  padding-top: 5%;
+  width: 100%;
+  #text {
+    width: 50%;
+    margin-bottom: 30px;
+  }
+  #row {
+    display: flex;
+    .col3,
+    .col4,
+    .col5 {
+      margin-right: 10px;
+    }
+  }
+}
+
+@mixin row {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@mixin  contentc {
+    
+}
+
+@mixin  second-row {
+    display: flex;
+    .contentc {
+        background-color: $Very-Light-Gray;
+    }
+    .col7 {
+        margin-right: 30px;
+        text-align: start;
+        .card {
+            padding: 10px;
+            border: none;
+        }
+    }
+    
+}
+
+@mixin footer {
+  padding: 5%;
+  text-align: center;
+  margin-right: auto;
+  padding-right: auto;
+  color: $White;
+  display: flex;
+  li {
+    list-style: none;
+    text-align: center;
+    a {
+      color: $White;
+
+    }
+  }
+  h6 {
+    color: $Grayish-Blue;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: cursive;
+  background-color: whitesmoke;
+  margin: 0; /*removes a bit of margin between the body and nav element*/
+}
+
+#burger:focus {
+  outline: none;
+}
+
+/* alligns nav item on a row */
+nav {
+  display: flex;
+  justify-content: space-between; /*add space between! the nav elements*/
+  align-items: center; /*align-items: vertically*/
+  background-color: $White;
+  padding: 15px;
+  overflow: hidden;
+}
+
+nav ul {
+  display: flex; /*align items in a a row*/
+  list-style: none;
+  /* there are hidden margin and padding removed below*/
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+nav ul li {
+  margin: 0 10px;
+  /*add on the left and on the right so as to make the ul element look good on mobile*/
+}
+
+nav ul li a {
+    color: $Grayish-Blue;
+    text-decoration: none;
+    font-weight: bolder;
+    position: relative;
+    font-size: medium;
+  &:hover {
+    color: $Dark-Blue;
+    text-decoration: none;
+  }
+}
+
+nav ul li a::after {
+  content: "";
+  background-color: $Lime-Green;
+  position: absolute;
+  left: 0;
+  bottom: -30px;
+  height: 4px;
+  width: 100%;
+  top: 40px;
+  transition: transform 0.4s linear;
+}
+
+nav ul li a:hover::after {
+  transform: translateY(-10px);
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+    @include nav();
+    ul {
+      position: fixed;
+      /* pushes the nav elemnt down*/
+      top: 100px;
+      width: 80%;
+      background-color: white;
+      flex-direction: column; /*use flex direction row to create a row of links*/
+      /*left 10% makes the items to be well placed*/
+      left: 10%;
+      text-align: center;
+      transition: ease-in-out 1000s;
+      border-radius: 5px;
+    }
+  }
+
+  nav ul.show {
+      transition: transform 0.4s ease;
+      transform: translateX(0);
+  }
+
+  button {
+    border: none;
+    font-weight: bolder;
+  }
+
+  nav ul li a::after {
+    display: none;
+  }
+
+  nav ul li {
+    margin: 15px;
+    a {
+      color: $Dark-Blue;
+    }
+  }
+
+  #burger {
+    float: right;
+  }
+
+  /**  #next_gn {
+        .col2 {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url(..//images/bg-intro-mobile.svg);
+        }
+    }
+    **/
+  .content {
+    #contenta {
+      display: flex;
+      flex-direction: column-reverse;
+      @include contenta();
+      padding-left: 0;
+      padding-right: 0;
+      background-color: $White;
+      .col1 {
+        h2 {
+          text-align: center;
+        }
+        p {
+          color: $Grayish-Blue;
+          width: 100%;
+          text-align: center;
+        }
+        button {
+          @include button();
+        }
+      }
+      .col2 {
+        @include col2();
+        background-image: url(..//images/bg-intro-mobile.svg);
+      }
+    }
+  }
+  .contentb {
+    @include header();
+    @include contentb();
+    padding-top:30px;
+    padding-bottom: 35px;
+    margin-top: 50px;
+    #text {
+      width: 100%;
+      text-align: center;
+    }
+    #row {
+      @include row();
+    }
+  }
+  .contentc {
+      background-color: $Very-Light-Gray;
+      h3 {
+          padding-top: 30px;
+          margin-bottom: 30px;
+          padding-left: 5%;
+      }
+      @include header();
+      #row {
+          @include row();
+          @include second-row();
+          .col7 {
+            margin-right: 5%;
+            margin-left: 5%;
+          }
+      }
+     
+  }
+
+  footer {
+    background-color: $Dark-Blue;
+    color: $White;
+    .footer {
+      @include footer();
+      flex-direction: column;
+        .col8 {
+          #social {
+            margin-top: 20px;
+            margin-bottom: 20px;
+              img {
+                margin-right: 5%;
+              }
+          }
+        }
+    }
+    button {
+      @include button();
+      color: $White;
+      background-color: $BrightCyan;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  nav {
+    @include nav();
+    padding-left: 5%;
+    padding-right: 5%;
+    #burger {
+      display: none;
+    }
+  }
+
+  .content {
+    #contenta {
+      overflow: hidden;
+      @include contenta();
+      .col1 {
+        text-align: start;
+        padding-right: 29%;
+        text-align: start;
+        color: $Dark-Blue;
+        font-weight: 500;
+        p {
+          color: $Grayish-Blue;
+          opacity: 0.5;
+        }
+      }
+      button {
+        @include button();
+        border: none;
+      }
+      .col2 {
+        @include col2();
+        background-image: url(..//images/bg-intro-desktop.svg);
+        background-position: center;
+        background-size: cover;
+        margin-right: -100px;
+        overflow: hidden;
+      }
+    }
+  }
+  .contentb {
+    @include header();
+    @include contentb();
+    padding-bottom: 40px;
+  }
+  .contentc {
+      background-color: $Very-Light-Gray;
+      @include header();
+      h3 {
+          margin-bottom: 30px;
+      }
+      padding: 5%;
+      #row {
+        @include  second-row ();
+      }
+      a {
+        &:hover {
+          color: $Lime-Green;
+          text-decoration: none;
+        }
+      }
+  }
+
+  footer {
+    background-color: $Dark-Blue;
+    color: $White;
+    .footer {
+      @include footer();
+      padding: 25px;
+        .col8 {
+          width: 25%;
+          text-align: center;
+            #social {
+              margin-top: 25px;
+                img {
+                  margin-right: 10px;
+                }
+            }
+        }
+        .col9, .col10 {
+          width: 15%;
+            li a {
+              &:hover {
+                color: $Lime-Green;
+                text-decoration: none;
+              }
+            }
+        }
+        .col11 {
+          width: 45%;
+          float: right;
+        }
+    }
+    button {
+      color: $White;
+      background-color: $BrightCyan;
+      color: white;
+    background-color: #2bb7da;
+    width: 30%;
+    padding: 10px;
+    border-radius: 84px;
+    outline: none;
+    border: none;
+    margin-bottom: 18px;
+    }
+  }
+}
